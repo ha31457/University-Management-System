@@ -1,7 +1,31 @@
 package UMS.student;
 
 public class Student {
-    public static void main(String[] args){
-        System.out.println("Hello World!");
+
+    int enrollmentID;
+    String name;
+
+    public Student(int enrollmentID, String name){
+        this.enrollmentID = enrollmentID;
+        this.name = name;
+    }
+    public Student(){
+
+    }
+
+    public int getEnrollmentID() {
+        return enrollmentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEnrollmentID(int enrollmentID) {
+        this.enrollmentID = enrollmentID;
     }
 }
