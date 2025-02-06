@@ -28,4 +28,12 @@ public class Student {
     public void setEnrollmentID(int enrollmentID) {
         this.enrollmentID = enrollmentID;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "enrollmentID=" + enrollmentID +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
