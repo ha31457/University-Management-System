@@ -44,8 +44,9 @@ public class Admin {
                     System.out.println("Enter the ID to be removed: ");
                     sID = sc.nextInt();
 
-                    model.RemoveStudent(sID);
-                    System.out.println("Student with ID " + sID + " removed!");
+                    if(model.RemoveStudent(sID)){
+                        System.out.println("Student with ID " + sID + " removed!");
+                    }
                     break;
 
                 case 3:

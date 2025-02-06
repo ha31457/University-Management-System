@@ -23,20 +23,24 @@ public class Model {
         teacherArrayList.add(t);
     }
 
-    public void RemoveTeacher(int teacherID){
+    public boolean RemoveTeacher(int teacherID){
         for(Teacher teacher: teacherArrayList){
             if(teacher.getTeacherID() == teacherID){
                 teacherArrayList.remove(teacher);
+                return true;
             }
         }
+        return false;
     }
 
-    public void RemoveStudent(int studentID){
+    public boolean RemoveStudent(int studentID){
         for(Student student: studentArrayList){
             if(student.getEnrollmentID() == studentID){
                 studentArrayList.remove(student);
+                return true;
             }
         }
+        return false;
     }
 
     public void PrintAllStudents(){
