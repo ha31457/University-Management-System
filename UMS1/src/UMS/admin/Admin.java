@@ -34,7 +34,9 @@ public class Admin {
                     sID = sc.nextInt();
 
                     System.out.println("Enter Student Name: ");
-                    String sName = sc.nextLine();
+//                    String sName = sc.nextLine();
+                    String sName = sc.next();
+                    String sLName = sc.next();
 
                     Student s = new Student(sID, sName);
                     model.AddStudent(s);
