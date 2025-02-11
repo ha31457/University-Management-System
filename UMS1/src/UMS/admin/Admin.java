@@ -3,14 +3,10 @@ package UMS.admin;
 import UMS.model.Model;
 import UMS.student.Student;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
 
-    private void AddStudent(){
-
-    }
     public static void main(String[] args){
         Menu();
     }
@@ -23,7 +19,7 @@ public class Admin {
             System.out.println("Enter your operation: ");
             System.out.println("1. Add Student");
             System.out.println("2. Remove Student");
-            System.out.println("2. Print Student List");
+            System.out.println("3. Print Student List");
             System.out.println("10. Exit");
 
             int choice = sc.nextInt();
