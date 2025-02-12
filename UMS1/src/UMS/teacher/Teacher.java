@@ -27,5 +27,13 @@ public class Teacher {
         public void setTeacherID(int teacherID) {
             this.teacherID = teacherID;
         }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherID=" + teacherID +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
 
