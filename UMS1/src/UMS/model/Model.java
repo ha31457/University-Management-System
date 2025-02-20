@@ -1,9 +1,5 @@
 package UMS.model;
 
-import UMS.course.Course;
-import UMS.student.Student;
-import UMS.teacher.Teacher;
-
 import java.util.ArrayList;
 
 public class Model {

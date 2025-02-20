@@ -1,4 +1,4 @@
-package UMS.student;
+package UMS.model;
 
 public class Student {
 

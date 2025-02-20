@@ -1,4 +1,4 @@
-package UMS.teacher;
+package UMS.model;
 public class Teacher {
 
         int teacherID;

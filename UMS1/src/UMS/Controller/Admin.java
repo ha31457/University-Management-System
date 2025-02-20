@@ -1,9 +1,9 @@
-package UMS.admin;
+package UMS.Controller;
 
-import UMS.course.Course;
+import UMS.model.Course;
 import UMS.model.Model;
-import UMS.student.Student;
-import UMS.teacher.Teacher;
+import UMS.model.Student;
+import UMS.model.Teacher;
 
 import java.util.Scanner;
 
