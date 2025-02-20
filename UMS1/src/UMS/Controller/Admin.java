@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class Admin {
 
-    public static void main(String[] args){
-        Menu();
-    }
-
-    private static void Menu() {
+//    private static Admin Instance;
+//    public static Admin getInstance(){
+//        return Instance;
+//    }
+    public static void Menu() {
         Model model = new Model();
         Scanner sc = new Scanner(System.in);
         while(true){
@@ -40,7 +40,7 @@ public class Admin {
                     System.out.print("Enter Student ID: ");
                     ID = sc.nextInt();
 
-                    System.out.println("Enter Student Name: ");
+                    System.out.print("Enter Student Name: ");
 //                    String sName = sc.nextLine();
                     String sName = sc.next();
                     String sLName = sc.next();
