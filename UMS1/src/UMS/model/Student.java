@@ -1,6 +1,7 @@
 package UMS.model;
+import UMS.AbstractClasses.Person;
 
-public class Student {
+public class Student extends Person {
 
     int enrollmentID;
     String name;
@@ -35,5 +36,15 @@ public class Student {
                 "enrollmentID=" + enrollmentID +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    protected void add(int ID, String name) {
+
+    }
+
+    @Override
+    protected boolean remove(int ID) {
+        return false;
     }
 }

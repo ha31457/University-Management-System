@@ -9,12 +9,21 @@ import java.util.Scanner;
 
 public class Admin {
 
-//    private static Admin Instance;
-//    public static Admin getInstance(){
-//        return Instance;
-//    }
-    public static void Menu() {
-        Model model = new Model();
+    static Model model;
+
+    public void AddStudent(int ID, String sName){
+        Student s = new Student(ID, sName);
+        model.AddStudent(s);
+    }
+
+    public void DelStudent(int ID){
+        if(model.RemoveStudent(ID)){
+            System.out.println("Student with ID " + ID + " removed!");
+        }
+    }
+
+    public void Menu() {
+
         Scanner sc = new Scanner(System.in);
         while(true){
 
@@ -41,21 +50,16 @@ public class Admin {
                     ID = sc.nextInt();
 
                     System.out.print("Enter Student Name: ");
-//                    String sName = sc.nextLine();
                     String sName = sc.next();
-                    String sLName = sc.next();
 
-                    Student s = new Student(ID, sName);
-                    model.AddStudent(s);
+                    AddStudent(ID, sName);
                     break;
 
                 case 2:
                     System.out.println("Enter the Student ID to be removed: ");
                     ID = sc.nextInt();
 
-                    if(model.RemoveStudent(ID)){
-                        System.out.println("Student with ID " + ID + " removed!");
-                    }
+                    DelStudent(ID);
                     break;
 
                 case 3:
@@ -68,7 +72,6 @@ public class Admin {
 
                     System.out.println("Enter Teacher Name: ");
                     String tName = sc.next();
-                    String tLName = sc.next();
 
                     Teacher t = new Teacher(ID,tName);
                     model.AddTeacher(t);
@@ -113,5 +116,11 @@ public class Admin {
             }
         }
 
+    }
+
+    public static void main(String[] args) {
+        Admin ad = new Admin();
+        model = new Model();
+        ad.Menu();
     }
 }
