@@ -1,25 +1,10 @@
 package UMS.model;
-import UMS.AbstractClasses.Person;
+import UMS.AbstractClasses.BaseEntity;
 
-public class Student extends Person {
-
-    int enrollmentID;
-    String name;
+public class Student extends BaseEntity {
 
     public Student(int enrollmentID, String name){
-        this.enrollmentID = enrollmentID;
-        this.name = name;
-    }
-    public Student(){
-
-    }
-
-    public int getEnrollmentID() {
-        return enrollmentID;
-    }
-
-    public String getName() {
-        return name;
+        super(enrollmentID, name);
     }
 
     public void setName(String name) {
@@ -27,24 +12,14 @@ public class Student extends Person {
     }
 
     public void setEnrollmentID(int enrollmentID) {
-        this.enrollmentID = enrollmentID;
+        this.id = enrollmentID;
     }
 
     @Override
-    public String toString() {
-        return "Student{" +
-                "enrollmentID=" + enrollmentID +
+    public void displayDetails() {
+        System.out.println("Student {" +
+                "enrollmentID=" + id +
                 ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    protected void add(int ID, String name) {
-
-    }
-
-    @Override
-    protected boolean remove(int ID) {
-        return false;
+                '}');
     }
 }

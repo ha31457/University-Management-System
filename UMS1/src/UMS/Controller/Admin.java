@@ -1,9 +1,6 @@
 package UMS.Controller;
 
-import UMS.model.Course;
-import UMS.model.Model;
-import UMS.model.Student;
-import UMS.model.Teacher;
+import UMS.model.*;
 
 import java.util.Scanner;
 
@@ -11,14 +8,61 @@ public class Admin {
 
     static Model model;
 
-    public void AddStudent(int ID, String sName){
+    public void addStudent(int ID, String sName){
         Student s = new Student(ID, sName);
-        model.AddStudent(s);
+        if(model.add(s, EntityType.student)){
+            System.out.println("Student added successfully.");
+        }
+        else{
+            System.out.println("Student with ID " + ID + " FAILED to be added.");
+        }
     }
 
-    public void DelStudent(int ID){
-        if(model.RemoveStudent(ID)){
+    public void delStudent(int ID){
+        if(model.remove(ID, EntityType.student)){
             System.out.println("Student with ID " + ID + " removed!");
+        }
+        else{
+            System.out.println("Student with ID " + ID + " not present!");
+        }
+    }
+
+    public void addTeacher(int ID, String tName){
+        Teacher t = new Teacher(ID,tName);
+        if(model.add(t, EntityType.teacher)){
+            System.out.println("Teacher added successfully.");
+        }
+        else{
+            System.out.println("Teacher with ID " + ID + " FAILED to be added.");
+
+        }
+    }
+
+    public void delTeacher(int ID){
+        if(model.remove(ID, EntityType.teacher)){
+            System.out.println("Teacher with ID " + ID + " removed!");
+        }
+        else{
+            System.out.println("Teacher with ID " + ID + " not present!");
+        }
+    }
+
+    public void addCourse(int ID, String cName){
+        Course c = new Course(ID, cName);
+        if(model.add(c, EntityType.course)){
+            System.out.println("Course added successfully!");
+        }
+        else{
+            System.out.println("Course with ID " + ID + " failed to be added!");
+        }
+    }
+
+    public void delCourse(int ID){
+        if(model.remove(ID, EntityType.course)){
+            System.out.println("Course with ID " + ID + " removed!");
+        }
+        else{
+            System.out.println("Course with ID " + ID + " not present!");
         }
     }
 
@@ -27,7 +71,7 @@ public class Admin {
         Scanner sc = new Scanner(System.in);
         while(true){
 
-            System.out.println("Enter your operation: ");
+            System.out.println("\nEnter your operation: ");
             System.out.println("1. Add Student");
             System.out.println("2. Remove Student");
             System.out.println("3. Print Student List");
@@ -40,7 +84,7 @@ public class Admin {
             System.out.println("8. Remove Course");
             System.out.println("9. Print all Courses");
             System.out.println();
-            System.out.println("10. Exit");
+            System.out.println("10. Exit\n");
 
             int choice = sc.nextInt();
             int ID;
@@ -52,18 +96,18 @@ public class Admin {
                     System.out.print("Enter Student Name: ");
                     String sName = sc.next();
 
-                    AddStudent(ID, sName);
+                    addStudent(ID, sName);
                     break;
 
                 case 2:
                     System.out.println("Enter the Student ID to be removed: ");
                     ID = sc.nextInt();
 
-                    DelStudent(ID);
+                    delStudent(ID);
                     break;
 
                 case 3:
-                    model.PrintAllStudents();
+                    model.displayAll(EntityType.student);
                     break;
 
                 case 4:
@@ -73,20 +117,17 @@ public class Admin {
                     System.out.println("Enter Teacher Name: ");
                     String tName = sc.next();
 
-                    Teacher t = new Teacher(ID,tName);
-                    model.AddTeacher(t);
+                    addTeacher(ID, tName);
                     break;
 
                 case 5:
                     System.out.println("Enter the Teacher ID to be removed: ");
                     ID = sc.nextInt();
 
-                    if(model.RemoveTeacher(ID)){
-                        System.out.println("Teacher with ID " + ID + "removed!");
-                    }
+                    delTeacher(ID);
                     break;
                 case 6:
-                    model.PrintAllTeachers();
+                    model.displayAll(EntityType.teacher);
                     break;
                 case 7:
                     System.out.println("Enter Course ID : ");
@@ -94,22 +135,18 @@ public class Admin {
 
                     System.out.println("Enter Course Name: ");
                     String cName = sc.next();
-                    String cLName = sc.next();
 
-                    Course c = new Course(ID, cName);
-                    model.AddCourse(c);
+                    addCourse(ID, cName);
                     break;
 
                 case 8:
                     System.out.println("Enter the Course ID to be removed: ");
                     ID = sc.nextInt();
 
-                    if(model.RemoveCourse(ID)){
-                        System.out.println("Course with ID " + ID + "removed!");
-                    }
+                    delCourse(ID);
                     break;
                 case 9:
-                    model.PrintAllCourses();
+                    model.displayAll(EntityType.course);
                     break;
                 case 10:
                     System.exit(0);

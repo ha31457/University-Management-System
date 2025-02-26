@@ -1,36 +1,18 @@
 package UMS.model;
 
-public class Course {
+import UMS.AbstractClasses.BaseEntity;
 
-    int courseID;
-    String courseName;
+public class Course extends BaseEntity {
 
     public Course(int courseID, String courseName){
-        this.courseID = courseID;
-        this.courseName = courseName;
-    }
-
-    public Course(){
-
-    }
-
-    public int getCourseID(){return courseID;}
-
-    public String getCourseName(){return courseName;}
-
-    public void setCourseName(String courseName){
-        this.courseName = courseName;
-    }
-
-    public void setCourseID(int courseID){
-        this.courseID = courseID;
+        super(courseID, courseName);
     }
 
     @Override
-    public String toString() {
-        return "Course{" +
-                "courseID=" + courseID +
-                ", courseName='" + courseName + '\'' +
-                '}';
+    public void displayDetails() {
+        System.out.println("Course {" +
+                "courseID=" + id +
+                ", courseName='" + name + '\'' +
+                '}');
     }
 }

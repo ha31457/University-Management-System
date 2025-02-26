@@ -1,74 +1,112 @@
 package UMS.model;
 
+import UMS.AbstractClasses.BaseEntity;
+import UMS.Interfaces.IEntityManager;
+
 import java.util.ArrayList;
 
-public class Model {
+public class Model implements IEntityManager {
 
-    private ArrayList<Student> studentArrayList;
-    private ArrayList<Teacher> teacherArrayList;
-    private ArrayList<Course> courseArrayList;
+    private ArrayList<BaseEntity> studentArrayList;
+    private ArrayList<BaseEntity> teacherArrayList;
+    private ArrayList<BaseEntity> courseArrayList;
 
     public Model(){
-        studentArrayList = new ArrayList<Student>();
-        teacherArrayList = new ArrayList<Teacher>();
-        courseArrayList = new ArrayList<Course>();
+        studentArrayList = new ArrayList<BaseEntity>();
+        teacherArrayList = new ArrayList<BaseEntity>();
+        courseArrayList = new ArrayList<BaseEntity>();
+
     }
 
-    public void AddStudent(Student s){
-        studentArrayList.add(s);
-    }
-
-    public void AddTeacher(Teacher t){
-        teacherArrayList.add(t);
-    }
-
-    public void AddCourse(Course c) { courseArrayList.add(c);}
-
-    public boolean RemoveTeacher(int teacherID){
-        for(Teacher teacher: teacherArrayList){
-            if(teacher.getTeacherID() == teacherID){
-                teacherArrayList.remove(teacher);
+    @Override
+    public boolean add(BaseEntity entity, EntityType type) {
+        switch (type){
+            case EntityType.student:
+                studentArrayList.add(entity);
                 return true;
-            }
+
+            case EntityType.teacher:
+                teacherArrayList.add(entity);
+                return true;
+
+            case EntityType.course:
+                courseArrayList.add(entity);
+                return true;
         }
         return false;
     }
 
-    public boolean RemoveStudent(int studentID){
-        for(Student student: studentArrayList){
-            if(student.getEnrollmentID() == studentID){
-                studentArrayList.remove(student);
-                return true;
+    private BaseEntity getIfPresent(int ID, ArrayList<BaseEntity> storage){
+        for(BaseEntity entity: storage){
+            if(entity.getId() == ID){
+                return entity;
             }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean remove(int ID, EntityType type) {
+        switch (type){
+            case EntityType.student:
+                BaseEntity student = getIfPresent(ID, studentArrayList);
+                if(student != null){
+                    studentArrayList.remove(student);
+                    return true;
+                }
+                return false;
+
+            case EntityType.teacher:
+                BaseEntity teacher = getIfPresent(ID, teacherArrayList);
+                if(teacher != null){
+                    teacherArrayList.remove(teacher);
+                    return true;
+                }
+                return false;
+
+            case EntityType.course:
+                BaseEntity course = getIfPresent(ID, courseArrayList);
+                if(course != null){
+                    courseArrayList.remove(course);
+                    return true;
+                }
+                return false;
         }
         return false;
     }
 
-    public boolean RemoveCourse(int courseID){
-        for(Course course: courseArrayList){
-            if(course.getCourseID() == courseID){
-                courseArrayList.remove(course);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void PrintAllStudents(){
-        for(Student student: studentArrayList){
-            System.out.println(student.toString());
+    private void display(ArrayList<BaseEntity> storage){
+        for(BaseEntity entity: storage){
+            entity.displayDetails();
         }
     }
 
-    public void PrintAllTeachers(){
-        for(Teacher teacher: teacherArrayList){
-            System.out.println(teacher.toString());
-        }
-    }
+    @Override
+    public void displayAll(EntityType type) {
+        switch (type){
+            case EntityType.student:
+                if(studentArrayList.isEmpty()){
+                    System.out.println("No Student Exists.\n");
+                    return;
+                }
+                display(studentArrayList);
+                break;
 
-    public void PrintAllCourses(){
-        for(Course course: courseArrayList){
-            System.out.println(course.toString());
+            case EntityType.teacher:
+                if(teacherArrayList.isEmpty()){
+                    System.out.println("No Teacher Exists.\n");
+                    return;
+                }
+                display(teacherArrayList);
+                break;
+
+            case EntityType.course:
+                if(courseArrayList.isEmpty()){
+                    System.out.println("No Course Exists.\n");
+                    return;
+                }
+                display(courseArrayList);
+                break;
         }
     }
 }

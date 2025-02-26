@@ -1,39 +1,19 @@
 package UMS.model;
-public class Teacher {
 
-        int teacherID;
-        String name;
+import UMS.AbstractClasses.BaseEntity;
+
+public class Teacher extends BaseEntity {
 
         public Teacher(int teacherID, String name){
-            this.teacherID = teacherID;
-            this.name = name;
-        }
-        public Teacher(){
-
-        }
-
-        public int getTeacherID() {
-            return teacherID;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public void setTeacherID(int teacherID) {
-            this.teacherID = teacherID;
+            super(teacherID, name);
         }
 
     @Override
-    public String toString() {
-        return "Teacher{" +
-                "teacherID=" + teacherID +
+    public void displayDetails() {
+        System.out.println("Teacher {" +
+                "teacherID=" + id +
                 ", name='" + name + '\'' +
-                '}';
+                '}');
     }
 }
 
