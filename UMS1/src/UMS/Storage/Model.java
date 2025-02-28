@@ -1,4 +1,4 @@
-package UMS.model;
+package UMS.Storage;
 
 import UMS.AbstractClasses.BaseEntity;
 import UMS.Exceptions.DuplicateIDException;

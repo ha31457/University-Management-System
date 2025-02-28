@@ -4,7 +4,7 @@ import UMS.AbstractClasses.BaseEntity;
 import UMS.Exceptions.DuplicateIDException;
 import UMS.Exceptions.IdNotFoundException;
 import UMS.Exceptions.NegativeIDException;
-import UMS.model.EntityType;
+import UMS.Storage.EntityType;
 
 public interface IEntityManager {
     public boolean add(BaseEntity entity, EntityType type) throws DuplicateIDException, NegativeIDException, IdNotFoundException;

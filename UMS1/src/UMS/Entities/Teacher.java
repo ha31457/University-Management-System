@@ -1,4 +1,4 @@
-package UMS.model;
+package UMS.Entities;
 
 import UMS.AbstractClasses.BaseEntity;
 

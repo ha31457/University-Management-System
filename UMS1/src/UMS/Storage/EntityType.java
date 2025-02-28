@@ -1,4 +1,4 @@
-package UMS.model;
+package UMS.Storage;
 
 public enum EntityType {
     student,

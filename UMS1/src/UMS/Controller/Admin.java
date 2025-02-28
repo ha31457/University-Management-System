@@ -3,7 +3,9 @@ package UMS.Controller;
 import UMS.Exceptions.DuplicateIDException;
 import UMS.Exceptions.IdNotFoundException;
 import UMS.Exceptions.NegativeIDException;
-import UMS.model.*;
+import UMS.Storage.EntityType;
+import UMS.Storage.Model;
+import UMS.Entities.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,6 +16,10 @@ public class Admin {
 
     public void addStudent(int ID, String sName){
         try {
+            if (sName.isEmpty()) {
+                System.out.println("Error: Student name cannot be blank.");
+                return;
+            }
             Student s = new Student(ID, sName);
             if (model.add(s, EntityType.student)) {
                 System.out.println("Student added successfully.");
@@ -36,6 +42,10 @@ public class Admin {
 
     public void addTeacher(int ID, String tName){
         try{
+            if (tName.isEmpty()) {
+                System.out.println("Error: Teacher name cannot be blank.");
+                return;
+            }
             Teacher t = new Teacher(ID,tName);
             if(model.add(t, EntityType.teacher)){
                 System.out.println("Teacher added successfully.");
@@ -58,6 +68,10 @@ public class Admin {
 
     public void addCourse(int ID, String cName){
         try{
+            if (cName.isEmpty()) {
+                System.out.println("Error: Course name cannot be blank.");
+                return;
+            }
             Course c = new Course(ID, cName);
             if(model.add(c, EntityType.course)){
                 System.out.println("Course added successfully!");
@@ -104,25 +118,54 @@ public class Admin {
                     case 1:
                         try {
                             System.out.print("Enter Student ID: ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Student ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             System.out.print("Enter Student Name: ");
-                            String sName = sc.next();
+                            String sName = sc.nextLine();
+
+                            if (sName.isEmpty()) {
+                                System.out.println("Error: Student name cannot be blank.");
+                                continue;
+                            }
 
                             addStudent(ID, sName);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
+                            sc.nextLine();
                         }
                         break;
 
                     case 2:
                         try {
                             System.out.println("Enter the Student ID to be removed: ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Student ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             delStudent(ID);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
+                            sc.nextLine();
                         }
                         break;
 
@@ -133,58 +176,119 @@ public class Admin {
                     case 4:
                         try {
                             System.out.println("Enter Teacher ID : ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Teacher ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             System.out.println("Enter Teacher Name: ");
-                            String tName = sc.next();
+                            String tName = sc.nextLine();
+
+                            if (tName.isEmpty()) {
+                                System.out.println("Error: Teacher name cannot be blank.");
+                                continue;
+                            }
 
                             addTeacher(ID, tName);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
+                            sc.nextLine();
                         }
                         break;
 
                     case 5:
                         try {
                             System.out.println("Enter the Teacher ID to be removed: ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Teacher ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             delTeacher(ID);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
+                            sc.nextLine();
                         }
                         break;
+
                     case 6:
                         model.displayAll(EntityType.teacher);
                         break;
+
                     case 7:
                         try {
                             System.out.println("Enter Course ID : ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Course ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             System.out.println("Enter Course Name: ");
-                            String cName = sc.next();
+                            String cName = sc.nextLine();
+
+                            if (cName.isEmpty()) {
+                                System.out.println("Error: Course name cannot be blank.");
+                                continue;
+                            }
 
                             addCourse(ID, cName);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
+                            sc.nextLine();
                         }
                         break;
 
                     case 8:
                         try {
                             System.out.println("Enter the Course ID to be removed: ");
-                            ID = sc.nextInt();
+                            sc.nextLine();
+                            String input = sc.nextLine();
+                            if (input.isEmpty()) {
+                                System.out.println("Error: Course ID cannot be blank.");
+                                continue;
+                            }
+                            try {
+                                ID = Integer.parseInt(input);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid integer for the ID");
+                                continue;
+                            }
 
                             delCourse(ID);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: enter an integer value");
-
+                            sc.nextLine();
                         }
                         break;
+
                     case 9:
                         model.displayAll(EntityType.course);
                         break;
+
                     case 10:
                         System.exit(0);
                     default:
@@ -192,6 +296,7 @@ public class Admin {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Select an integer option");
+                sc.nextLine();
             }
         }
     }
